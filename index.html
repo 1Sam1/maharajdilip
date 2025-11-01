@@ -1,39 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <style>
-    body, html {
-      height: 100%;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Responsive Digital Clock</title>
+<style>
+  body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #121212;
+    font-family: 'Poppins', sans-serif;
+  }
+  #clock {
+    color: #00ff99;
+    font-size: 6vw;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    background: #222;
+    padding: 20px 60px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #00ff99;
+    user-select: none;
+  }
+  @media (max-width: 600px) {
     #clock {
-      font-size: 3rem;
-      color: #333;
-      padding: 1rem 2rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      user-select: none;
+      font-size: 12vw;
+      padding: 15px 30px;
     }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div id="clock"></div>
+  <div id="clock">00:00:00</div>
 
   <script>
     function updateClock() {
       const now = new Date();
-      const timeString = now.toLocaleTimeString();
-      document.getElementById('clock').textContent = timeString;
+      let hr = now.getHours().toString().padStart(2, '0');
+      let min = now.getMinutes().toString().padStart(2, '0');
+      let sec = now.getSeconds().toString().padStart(2, '0');
+      document.getElementById('clock').textContent = `${hr}:${min}:${sec}`;
     }
 
     setInterval(updateClock, 1000);
-    updateClock(); // initial call to display clock immediately
+    updateClock(); // initialize clock immediately
   </script>
 </body>
 </html>
